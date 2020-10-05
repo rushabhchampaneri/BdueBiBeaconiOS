@@ -20,6 +20,14 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>App wants to use Bluetooth for scan near by iBeacons</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App wants to use device bluetooth for scan nearby beacons</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App wants to use location for scan nearby iBeacon</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App wants to use location for scan nearby iBeacon</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -41,6 +49,12 @@
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -15,6 +15,9 @@
 		FF512BDC252AEBD1001F65AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF512BDA252AEBD1001F65AC /* LaunchScreen.storyboard */; };
 		FF512BE7252AEBD1001F65AC /* BdueBiBeaconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512BE6252AEBD1001F65AC /* BdueBiBeaconTests.swift */; };
 		FF512BF2252AEBD1001F65AC /* BdueBiBeaconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512BF1252AEBD1001F65AC /* BdueBiBeaconUITests.swift */; };
+		FF512C0B252AEEFB001F65AC /* iBeaconActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512C09252AEEFB001F65AC /* iBeaconActor.swift */; };
+		FF512C0C252AEEFB001F65AC /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512C0A252AEEFB001F65AC /* BleManager.swift */; };
+		FF8252A7252B1BBB00361245 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8252A6252B1BBB00361245 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,10 @@
 		FF512BED252AEBD1001F65AC /* BdueBiBeaconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BdueBiBeaconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF512BF1252AEBD1001F65AC /* BdueBiBeaconUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdueBiBeaconUITests.swift; sourceTree = "<group>"; };
 		FF512BF3252AEBD1001F65AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF512C09252AEEFB001F65AC /* iBeaconActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconActor.swift; sourceTree = "<group>"; };
+		FF512C0A252AEEFB001F65AC /* BleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
+		FF512C33252AF484001F65AC /* BdueBiBeacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BdueBiBeacon.entitlements; sourceTree = "<group>"; };
+		FF8252A6252B1BBB00361245 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +106,9 @@
 		FF512BCE252AEBCA001F65AC /* BdueBiBeacon */ = {
 			isa = PBXGroup;
 			children = (
+				FF8252A5252B1BAD00361245 /* UtilityClass */,
+				FF512C33252AF484001F65AC /* BdueBiBeacon.entitlements */,
+				FF512C08252AED4D001F65AC /* iBeaconClass */,
 				FF512BCF252AEBCA001F65AC /* AppDelegate.swift */,
 				FF512BD1252AEBCA001F65AC /* SceneDelegate.swift */,
 				FF512BD3252AEBCA001F65AC /* ViewController.swift */,
@@ -126,6 +136,23 @@
 				FF512BF3252AEBD1001F65AC /* Info.plist */,
 			);
 			path = BdueBiBeaconUITests;
+			sourceTree = "<group>";
+		};
+		FF512C08252AED4D001F65AC /* iBeaconClass */ = {
+			isa = PBXGroup;
+			children = (
+				FF512C0A252AEEFB001F65AC /* BleManager.swift */,
+				FF512C09252AEEFB001F65AC /* iBeaconActor.swift */,
+			);
+			path = iBeaconClass;
+			sourceTree = "<group>";
+		};
+		FF8252A5252B1BAD00361245 /* UtilityClass */ = {
+			isa = PBXGroup;
+			children = (
+				FF8252A6252B1BBB00361245 /* Constants.swift */,
+			);
+			path = UtilityClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +287,10 @@
 			files = (
 				FF512BD4252AEBCA001F65AC /* ViewController.swift in Sources */,
 				FF512BD0252AEBCA001F65AC /* AppDelegate.swift in Sources */,
+				FF512C0C252AEEFB001F65AC /* BleManager.swift in Sources */,
 				FF512BD2252AEBCA001F65AC /* SceneDelegate.swift in Sources */,
+				FF512C0B252AEEFB001F65AC /* iBeaconActor.swift in Sources */,
+				FF8252A7252B1BBB00361245 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BdueBiBeacon/BdueBiBeacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5U82T7335;
 				INFOPLIST_FILE = BdueBiBeacon/Info.plist;
@@ -456,6 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BdueBiBeacon/BdueBiBeacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5U82T7335;
 				INFOPLIST_FILE = BdueBiBeacon/Info.plist;
