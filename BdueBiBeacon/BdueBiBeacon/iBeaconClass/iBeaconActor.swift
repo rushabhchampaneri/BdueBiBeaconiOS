@@ -75,20 +75,44 @@ public class iBeaconActor: NSObject,CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("didExitRegion ----------------")
+        var responseData : [String : Any] = [:]
+        if BleManager.sharedInstance.currentLocation != nil {
+            responseData = [kResponseType : 2 ,klat : BleManager.sharedInstance.currentLocation?.coordinate.latitude ?? 0 , klng : BleManager.sharedInstance.currentLocation?.coordinate.longitude ?? 0]
+        } else {
+            responseData = [kResponseType : 2 , klat : 0 , klng : 0]
+        }
+        BleManager.sharedInstance.objOnBeaconFoundBlock!(nil, responseData)
         appDelegate_.sendLocalNotification(strTitle: "Beacon", strMessage: "didExitRegion")
     }
     
     public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("didEnterRegion -------------------")
         appDelegate_.sendLocalNotification(strTitle: "Beacon", strMessage: "didEnterRegion")
+        var responseData : [String : Any] = [:]
+        if BleManager.sharedInstance.currentLocation != nil {
+            responseData = [kResponseType : 3 ,klat : BleManager.sharedInstance.currentLocation?.coordinate.latitude ?? 0 , klng : BleManager.sharedInstance.currentLocation?.coordinate.longitude ?? 0]
+        } else {
+            responseData = [kResponseType : 3 , klat : 0 , klng : 0]
+        }
+        BleManager.sharedInstance.objOnBeaconFoundBlock!(nil, responseData)
     }
     
     public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
             if BleManager.sharedInstance.objOnBeaconFoundBlock != nil {
+                var arrBeaconList :[[String : Any]] = []
                 for beacon in beacons {
-                    BleManager.sharedInstance.objOnBeaconFoundBlock!(nil, beacon)
+                    let dicData : [String : Any] = [kBeaconUUID : beacon.uuid.uuidString, kBeaconMinor : beacon.minor , kBeaconMajor : beacon.major]
+                    arrBeaconList.append(dicData)
                 }
+                
+                var responseData : [String : Any] = [:]
+                if BleManager.sharedInstance.currentLocation != nil {
+                    responseData = [kResponseType : 1 , kBeaconList : arrBeaconList , klat : BleManager.sharedInstance.currentLocation?.coordinate.latitude ?? 0 , klng : BleManager.sharedInstance.currentLocation?.coordinate.longitude ?? 0]
+                } else {
+                    responseData = [kResponseType : 1 , kBeaconList : arrBeaconList , klat : 0 , klng : 0]
+                }
+                BleManager.sharedInstance.objOnBeaconFoundBlock!(nil, responseData)
                 appDelegate_.sendLocalNotification(strTitle: "Beacon", strMessage: "No Of Beacon Detacted : \(beacons.count)")
             }
         }
@@ -130,5 +154,6 @@ public class iBeaconActor: NSObject,CLLocationManagerDelegate {
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        BleManager.sharedInstance.currentLocation = locations.last
     }
 }

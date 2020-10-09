@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     func sendLocalNotification(strTitle: String, strMessage : String) {
+        return
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .denied: break

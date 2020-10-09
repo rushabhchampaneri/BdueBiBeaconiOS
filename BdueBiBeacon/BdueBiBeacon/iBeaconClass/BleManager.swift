@@ -10,6 +10,8 @@ import UIKit
 import CoreBluetooth
 import CoreLocation
 
+@objc(BleManager)
+
 enum kErrorCode:Int{
     case bluetoothOff = 0
     case bluetoothNotSupported = 1
@@ -18,21 +20,32 @@ enum kErrorCode:Int{
 }
 
 let kERR_MSG = "message"
+let kResponseType = "responseType" // 1 for beacon info, 2 for enter region , 3 for exit region
+let kBeaconList = "beaconList"
+let kBeaconUUID = "beaconUUID"
+let kBeaconMajor = "beaconMajor"
+let kBeaconMinor = "beaconMinor"
+let klat = "lat"
+let klng = "lng"
+
+//{ "responseType" : 1 , "kBeaconList" : [{"kBeaconUUID" : "123123" , "major" : "213" , "minor" : "1233"},{"kBeaconUUID" : "123123" , "major" : "213" , "minor" : "1233"}] }
 
 let kERR_MSG_BLUETOOTH_OFF = "Please turn on bluetooth"
 let kERR_MSG_ENABLE_LOCATION = "Please enable location"
 let kERR_PLEASE_CHANGE_LOCATION_PERMISSION_TO_ALWAYS = "Please change location permission to always"
 
 //iBeacon Manager Closure
-public typealias OnBeaconFoundBlock = ( _ error: NSError? , _ iBeacon : CLBeacon?) -> Void
+public typealias OnBeaconFoundBlock = ( _ error: NSError? , _ responseData : [String : Any]?) -> Void
 
-public class BleManager: NSObject,CBPeripheralManagerDelegate {
+@objc public class BleManager: NSObject,CBPeripheralManagerDelegate {
     
     public var objOnBeaconFoundBlock : OnBeaconFoundBlock?
     var bluetoothPeripheralManager: CBPeripheralManager!
     var intBluetoothState : Int! = 0
     var arrRegionUUID : [String] = []
-    public static let sharedInstance:BleManager = {
+    var currentLocation : CLLocation?
+    
+   @objc public static let sharedInstance:BleManager = {
         let instance = BleManager()
         return instance
     }()
@@ -44,7 +57,7 @@ public class BleManager: NSObject,CBPeripheralManagerDelegate {
     }
     
     //MARK:- iBeacon Methods -
-    public func startBeaconScanningDevices(arrUUID : [String] , completion : @escaping OnBeaconFoundBlock) {
+   @objc public func startBeaconScanningDevices(arrUUID : [String] , completion : @escaping OnBeaconFoundBlock) {
         self.objOnBeaconFoundBlock = completion
         self.arrRegionUUID = arrUUID
         if self.intBluetoothState == 0 {
@@ -84,7 +97,7 @@ public class BleManager: NSObject,CBPeripheralManagerDelegate {
         }
     }
 
-    public func stopBeaconScanningDevice() {
+    @objc public func stopBeaconScanningDevice() {
         iBeaconActor.sharedInstance.stopMonitoringBeacon()
     }
     

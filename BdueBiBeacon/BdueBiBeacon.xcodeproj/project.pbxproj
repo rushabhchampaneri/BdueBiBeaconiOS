@@ -18,6 +18,7 @@
 		FF512C0B252AEEFB001F65AC /* iBeaconActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512C09252AEEFB001F65AC /* iBeaconActor.swift */; };
 		FF512C0C252AEEFB001F65AC /* BleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF512C0A252AEEFB001F65AC /* BleManager.swift */; };
 		FF8252A7252B1BBB00361245 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8252A6252B1BBB00361245 /* Constants.swift */; };
+		FFA65F962530638A00265450 /* ReactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA65F952530638A00265450 /* ReactManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,9 @@
 		FF512C0A252AEEFB001F65AC /* BleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager.swift; sourceTree = "<group>"; };
 		FF512C33252AF484001F65AC /* BdueBiBeacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BdueBiBeacon.entitlements; sourceTree = "<group>"; };
 		FF8252A6252B1BBB00361245 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FFA65F932530638A00265450 /* BdueBiBeacon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BdueBiBeacon-Bridging-Header.h"; sourceTree = "<group>"; };
+		FFA65F942530638A00265450 /* ReactManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactManager.h; sourceTree = "<group>"; };
+		FFA65F952530638A00265450 /* ReactManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,9 @@
 			children = (
 				FF512C0A252AEEFB001F65AC /* BleManager.swift */,
 				FF512C09252AEEFB001F65AC /* iBeaconActor.swift */,
+				FFA65F942530638A00265450 /* ReactManager.h */,
+				FFA65F952530638A00265450 /* ReactManager.m */,
+				FFA65F932530638A00265450 /* BdueBiBeacon-Bridging-Header.h */,
 			);
 			path = iBeaconClass;
 			sourceTree = "<group>";
@@ -222,6 +229,7 @@
 				TargetAttributes = {
 					FF512BCB252AEBCA001F65AC = {
 						CreatedOnToolsVersion = 12.0.1;
+						LastSwiftMigration = 1200;
 					};
 					FF512BE1252AEBD1001F65AC = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -289,6 +297,7 @@
 				FF512BD0252AEBCA001F65AC /* AppDelegate.swift in Sources */,
 				FF512C0C252AEEFB001F65AC /* BleManager.swift in Sources */,
 				FF512BD2252AEBCA001F65AC /* SceneDelegate.swift in Sources */,
+				FFA65F962530638A00265450 /* ReactManager.m in Sources */,
 				FF512C0B252AEEFB001F65AC /* iBeaconActor.swift in Sources */,
 				FF8252A7252B1BBB00361245 /* Constants.swift in Sources */,
 			);
@@ -464,8 +473,10 @@
 		FF512BF7252AEBD1001F65AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BdueBiBeacon/BdueBiBeacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5U82T7335;
@@ -477,6 +488,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.BdueBiBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BdueBiBeacon/iBeaconClass/BdueBiBeacon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -485,8 +498,10 @@
 		FF512BF8252AEBD1001F65AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BdueBiBeacon/BdueBiBeacon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5U82T7335;
@@ -498,6 +513,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.BdueBiBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BdueBiBeacon/iBeaconClass/BdueBiBeacon-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

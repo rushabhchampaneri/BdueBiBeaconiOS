@@ -16,27 +16,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //need to call this method and send list of uuid for ibeacon scanning
-        self.startBeaconScanning(arrUUID: ["f94dbb23-2266-7822-3782-57beac0952ac"])
-    }
-    
-    //start ibeacon scanning
-    func startBeaconScanning(arrUUID : [String]) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            print("----------------beacon scanning started from home screen -------------------")
-            BleManager.sharedInstance.startBeaconScanningDevices(arrUUID: arrUUID) { (error, beacon) in
-                if error != nil {
-                    self.showAlertAndRedirectToSetting(error: error)
-                } else {
-                    let strBeaconId = String.init("\(beacon?.uuid.uuidString ?? "")_\(beacon?.major ?? 0)_\(beacon?.minor ?? 0)").lowercased()
-                    print("beacon discovered \(strBeaconId) rssi : \(String(describing: beacon?.rssi))")
-                }
-            }
-        }
-    }
-    
-    func stopBeaconScanning() {
-        BleManager.sharedInstance.stopBeaconScanningDevice()
+        ReactManager.shared().startBeaconScanning(["f94dbb23-2266-7822-3782-57beac0952ac"])
     }
     
     func showAlertAndRedirectToSetting(error : NSError?) {
