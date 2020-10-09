@@ -28,21 +28,6 @@ static ReactManager * singletonInstance;
     return singletonInstance;
 }
 
-//use this methods for stop scan
--(void)stopBeaconScanning {
-    BleManager* manager = [BleManager sharedInstance];
-    [manager stopBeaconScanningDevice];
-}
-
-//use this metho for start scan
--(void)startBeaconScanning:(NSArray*)arrList {
-    BleManager* manager = [BleManager sharedInstance];
-    [manager startBeaconScanningDevicesWithArrUUID:arrList completion:^(NSError * error, NSDictionary<NSString *,id> * dicResponse) {
-        NSLog(@"error : %@",error.localizedDescription);
-        NSLog(@"dicResponse : %@",dicResponse);
-    }];
-}
-
 RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(startBeaconScanning:(NSArray*)arrUUID callBack:(RCTResponseSenderBlock)callback) {
     BleManager* manager = [BleManager sharedInstance];
@@ -59,6 +44,11 @@ RCT_EXPORT_METHOD(startBeaconScanning:(NSArray*)arrUUID callBack:(RCTResponseSen
             callback(@[dicResponse]);
         }
     }];
+}
+
+RCT_EXPORT_METHOD(stopBeaconScanning) {
+    BleManager* manager = [BleManager sharedInstance];
+    [manager stopBeaconScanningDevice];
 }
 
 @end

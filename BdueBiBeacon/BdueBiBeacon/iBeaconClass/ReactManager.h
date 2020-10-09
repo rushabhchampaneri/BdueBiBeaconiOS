@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(ReactManager*)sharedManager;
 
--(void)stopBeaconScanning;
--(void)startBeaconScanning:(NSArray*)arrList;
 @end
 
 NS_ASSUME_NONNULL_END
