@@ -28,7 +28,18 @@ let kBeaconMinor = "beaconMinor"
 let klat = "lat"
 let klng = "lng"
 
-//{ "responseType" : 1 , "kBeaconList" : [{"kBeaconUUID" : "123123" , "major" : "213" , "minor" : "1233"},{"kBeaconUUID" : "123123" , "major" : "213" , "minor" : "1233"}] }
+//when beacon detact
+//{ "responseType" : 1 , "beaconList" : [{"beaconUUID" : "123123" , "major" : "213" , "minor" : "1233"},{"beaconUUID" : "123123" , "major" : "213" , "minor" : "1233"}] , lat : "23" , lng : "444"}
+
+//when enter region
+//{ "responseType" : 2, lat : "23" , lng : "444"}
+
+//when exit region
+//{ "responseType" : 3, lat : "23" , lng : "444"}
+
+//when error occured
+//{ "responseType" : 0, "message" : "location permission required"}
+
 
 let kERR_MSG_BLUETOOTH_OFF = "Please turn on bluetooth"
 let kERR_MSG_ENABLE_LOCATION = "Please enable location"

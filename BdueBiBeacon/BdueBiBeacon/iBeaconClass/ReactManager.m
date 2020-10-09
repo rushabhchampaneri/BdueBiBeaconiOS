@@ -44,22 +44,19 @@ static ReactManager * singletonInstance;
 }
 
 RCT_EXPORT_MODULE()
-RCT_EXPORT_METHOD(startBeaconScanning:(NSArray*)arrUUID) {
+RCT_EXPORT_METHOD(startBeaconScanning:(NSArray*)arrUUID callBack:(RCTResponseSenderBlock)callback) {
     BleManager* manager = [BleManager sharedInstance];
     [manager startBeaconScanningDevicesWithArrUUID:arrList completion:^(NSError * error, NSDictionary<NSString *,id> * dicResponse) {
         NSLog(@"error : %@",error.localizedDescription);
         NSLog(@"dicResponse : %@",dicResponse);
-        
-        RCT_EXPORT_METHOD(eventDetacted:(RCTResponseSenderBlock)callback) {
-            if (error != nil) {
-                NSMutableDictionary * dicData = [NSMutableDictionary new];
-                NSString * strErrorMessage = error.userInfo[@"message"];
-                dicData[@"responseType"] = 0;
-                dicData[@"message"] = strErrorMessage;
-                callback(@[dicData]);
-            } else {
-                callback(@[dicResponse]);
-            }
+        if (error != nil) {
+            NSMutableDictionary * dicData = [NSMutableDictionary new];
+            NSString * strErrorMessage = error.userInfo[@"message"];
+            dicData[@"responseType"] = 0;
+            dicData[@"message"] = strErrorMessage;
+            callback(@[dicData]);
+        } else {
+            callback(@[dicResponse]);
         }
     }];
 }
